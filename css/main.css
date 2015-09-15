@@ -1,7 +1,28 @@
 .container {
-    margin-top: 1cm;
+	margin-top: 1cm;
 }
 
 .lower {
-	margin-top: 1cm
+	margin-top: 1cm;
+}
+
+.table-list-search {
+	font-size: 105%;
+}
+
+td {
+	max-width: 250px;
+	max-height: 150px;
+	overflow: hidden
+}
+
+.search {
+	margin-right: 1cm;
+}
+
+.empty {
+	display: block;
+	width: 300px;
+	height: 100%;
+	margin: auto auto 0 auto;
 }
