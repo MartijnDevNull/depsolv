@@ -9,22 +9,29 @@ class depsolv {
 	 * @param unknown $name        	
 	 */
 	public function search($name) {
-		$this->name = $name;
-		// $this->name = "Xrender.h";
-		
-		$repoFiles = $this->getFileSearch ();
-		
-		$formattedHits = array ();
-		
-		foreach ( $repoFiles as $hit ) {
-			$formattedHits [] = array (
-					"NAME" => html_entity_decode ( array_keys ( $hit )[0] ),
-					"PATH" => html_entity_decode ( $hit [array_keys ( $hit )[0]] ),
-					"DESC" => html_entity_decode ( $this->getDescription ( array_keys ( $hit )[0] ) ) 
-			);
+		if (strlen ( $name ) >= 3) {
+			$this->name = $name;
+			$repoFiles = $this->getFileSearch ();
+			if (count ( $repoFiles ) >= 2) {
+				$formattedHits = array ();
+				foreach ( $repoFiles as $hit ) {
+					$formattedHits [] = array (
+							"NAME" => html_entity_decode ( array_keys ( $hit )[0] ),
+							"PATH" => html_entity_decode ( $hit [array_keys ( $hit )[0]] ),
+							"DESC" => html_entity_decode ( $this->getDescription ( array_keys ( $hit )[0] ) ) 
+					);
+				}
+				return json_encode ( $formattedHits );
+			} else {
+				return json_encode ( array (
+						"ERROR" => "EMPTY" 
+				) );
+			}
+		} else {
+			return json_encode ( array (
+					"ERROR" => "TOOSMALL" 
+			) );
 		}
-		
-		return json_encode ( $formattedHits );
 	}
 	
 	/**
@@ -70,7 +77,7 @@ class depsolv {
 			return $searchArray;
 		} elseif ($loc == 0) {
 			return state::Emtpy;
-		} elseif ($loc >= 50) {
+		} elseif ($loc >= 400) {
 			return state::ToBig;
 		}
 	}
