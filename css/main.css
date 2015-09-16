@@ -3,7 +3,7 @@
 }
 
 .lower {
-	margin-top: 1cm;
+	margin-top: 20px;
 }
 
 .table-list-search {
@@ -11,9 +11,8 @@
 }
 
 td {
-	max-width: 250px;
+	max-width: 200px;
 	max-height: 150px;
-	overflow: hidden
 }
 
 .search {
@@ -32,4 +31,19 @@ td {
 	width: 100px;
 	height: 100%;
 	margin: auto auto 0 auto;
+}
+
+.transparant {
+	background-color: #2B3E50 !important;
+	margin-top: -8px;
+}
+
+.transparant:FOCUS{
+	background-color: #2B3E50 !important;
+}
+
+.btn-primary:HOVER {
+	background-color: #2B3850 !important;
+	margin-top: -8px; 
+	border-radius: 100px
 }
