@@ -28,7 +28,9 @@ $(document)
 									tableBody
 										.prepend("<tr class=\"search-query-sf\"><td>Package</td><td>"
 											+ data
-											+ "</td><td>[..]wncontrols/tcdedit.getselstartx.html</td><td><a id=\"copy\" onClick=\"setClipboard('a')\" class=\"btn btn-primary transparant\"><span class=\"glyphicon glyphicon-copy\"></span></a></td></tr>");
+											+ "</td><td>[..]wncontrols/tcdedit.getselstartx.html</td>"
+											+ "<td><a id=\"copy\" onClick=\"setClipboard('a')\" class=\"btn btn-primary transparant\">"
+											+ "<span class=\"glyphicon glyphicon-copy\"></span></a></td></tr>");
 								}
 							});
 						$(".empty").hide();
