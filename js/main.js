@@ -25,12 +25,16 @@ $(document)
 									$('.loading').hide();
 								},
 								success : function(data) {
-									tableBody
-										.prepend("<tr class=\"search-query-sf\"><td>Package</td><td>"
-											+ data
-											+ "</td><td>[..]wncontrols/tcdedit.getselstartx.html</td>"
-											+ "<td><a id=\"copy\" onClick=\"setClipboard('a')\" class=\"btn btn-primary transparant\">"
+									obj = JSON.parse(data);
+									$.each(obj, function(index, value) {
+										tableBody
+										.prepend("<tr class=\"search-query-sf\">" 
+											+ "<td>" + value.NAME + "</td>"
+											+ "<td>" + value.DESC + "</td>"
+											+ "<td>" + value.PATH + "</td>"
+											+ "<td><a id=\"copy\" onClick=\"setClipboard('" + value.NAME +"')\" class=\"btn btn-primary transparant\">"
 											+ "<span class=\"glyphicon glyphicon-copy\"></span></a></td></tr>");
+									});
 								}
 							});
 						$(".empty").hide();
@@ -40,6 +44,6 @@ $(document)
 		});
 
 function setClipboard($naam) {
-	alert("intercepted");
+	alert($naam);
 	return false;
 };
