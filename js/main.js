@@ -52,7 +52,7 @@ $(document)
 					});
 		});
 
-function setClipboard($naam) {
-	alert($naam);
+function setClipboard(naam) {
+	prompt("Press CTRL + C top copy", "sudo apt-get install " + naam);
 	return false;
 };
