@@ -1,9 +1,11 @@
 <?php
 include "depsolv.php";
-$deps = new depsolv();
+$deps = new depsolv ();
 
-echo $deps->search($_REQUEST['q']);
-if ($_REQUEST['update'] == "y"){
-	$deps->update();
+if (isset ( $_REQUEST ['q'] )) {
+	echo $deps->search ( $_REQUEST ['q'] );
+}
+if ($_REQUEST ['update'] == "y") {
+	$deps->update ();
 }
 ?>
