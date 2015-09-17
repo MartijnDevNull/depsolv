@@ -1,63 +1,61 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<link rel="shortcut icon" href="img/logo.ico">
-<title>Depsolv</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/superhero/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<link rel="stylesheet" type="text/css" href="css/bootswatch.css">
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script
-	src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="search">
-				<div class="col-md-3">
-					<a href="/"><img src="img/logo.png"></a> <br>
-					<form id="formSub" action="" method="get">
-						<div class="input-group">
-							<input class="form-control" id="system-search" name="q"
-								placeholder="Search for" required> <span
-								class="input-group-btn">
-								<button type="submit" class="btn btn-default">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							</span>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="lower">
-				<div class="col-md-9">
-					<table class="table table-list-search">
-						<thead>
-							<tr>
-								<th>Package name</th>
-								<th>Description</th>
-								<th>Path</th>
-								<th>Apt-get</th>
-							</tr>
-						</thead>
-						<tbody>
-							<!-- Table entries -->
-						</tbody>
-					</table>
-					<span class="loading"></span>
-					<div class="center">
-						<span class="empty">Use search to start searching!</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script src="js/main.js"></script>
-</body>
+   <head>
+      <meta charset="utf-8">
+      <link rel="shortcut icon" href="img/logo.ico">
+      <title>Depsolv</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link
+         href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/superhero/bootstrap.min.css"
+         rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="css/main.css">
+      <link rel="stylesheet" type="text/css" href="css/bootswatch.css">
+      <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+      <script
+         src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+   </head>
+   <body>
+      <div class="container">
+         <div class="row">
+            <div class="search">
+               <div class="col-md-3">
+                  <a href="/"><img src="img/logo.png"></a> <br>
+                  <form id="formSub" action="" method="get">
+                     <div class="input-group">
+                        <input class="form-control" id="system-search" name="q"
+                           placeholder="Search for" required> <span
+                           class="input-group-btn">
+                        <button type="submit" class="btn btn-default">
+                        <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                        </span>
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <div class="lower">
+               <div class="col-md-9">
+                  <table class="table table-list-search">
+                     <thead>
+                        <tr>
+                           <th>Package name</th>
+                           <th>Description</th>
+                           <th>Path</th>
+                           <th>Apt-get</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <!-- Table entries -->
+                     </tbody>
+                  </table>
+                  <span class="loading"></span>
+                  <div class="center">
+                     <span class="empty">Use search to start searching!</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="js/main.js"></script>
+   </body>
 </html>

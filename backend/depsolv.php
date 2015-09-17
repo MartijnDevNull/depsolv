@@ -81,9 +81,8 @@ class depsolv {
 	}
 	
 	/**
-	 * 
 	 */
-	public function update(){
+	public function update() {
 		echo shell_exec ( "apt-file update -c cache / 2>&1" );
 	}
 }
