@@ -88,8 +88,13 @@ class depsolv {
 	
 	/**
 	 */
-	public function update() {
-		echo shell_exec ( "apt-file update -c cache / 2>&1" );
+	public function update($q) {
+		if ($q == "cache"){
+			echo shell_exec ( "apt-file update -c cache / 2>&1" );
+		}
+		if ($q == "git"){
+			echo shell_exec ( "git pull / 2>&1" );
+		}
 	}
 }
 ?>
