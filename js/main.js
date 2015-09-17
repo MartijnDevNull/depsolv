@@ -8,7 +8,8 @@ function () {
     function () {
         var tableBody = $('.table-list-search tbody');
         var tableRowsClass = $('.table-list-search tbody tr');
-        var url = "https://api.plebian.nl/backend/api.php";
+        // var url = "https://api.plebian.nl/backend/api.php";
+        var url = "backend/api.php";
         $.ajax({
             type: "POST",
             url: url,
@@ -42,7 +43,7 @@ function () {
 	                } 
                 } else if (obj.ERROR == "WRONGSTART"){
                 	$(".empty").show();
-                    $(".empty").text("Search started with - charactar, this break functionality");
+                    $(".empty").text("Search started with '-' charactar, this breaks functionality");
                 }
             }
         });

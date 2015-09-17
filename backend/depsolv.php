@@ -8,21 +8,27 @@ class depsolv {
 	 */
 	public function search($name) {
 		if (strlen ( $name ) >= 3) {
-			$this->name = $name;
-			$repoFiles = $this->getFileSearch ();
-			if (count ( $repoFiles ) >= 2) {
-				$formattedHits = array ();
-				foreach ( $repoFiles as $hit ) {
-					$formattedHits [] = array (
-							"NAME" => html_entity_decode ( array_keys ( $hit )[0] ),
-							"PATH" => html_entity_decode ( $hit [array_keys ( $hit )[0]] ),
-							"DESC" => html_entity_decode ( $this->getDescription ( array_keys ( $hit )[0] ) ) 
-					);
+			if (substr ( $name, 0 , 1) != "-") {
+				$this->name = $name;
+				$repoFiles = $this->getFileSearch ();
+				if (count ( $repoFiles ) >= 2) {
+					$formattedHits = array ();
+					foreach ( $repoFiles as $hit ) {
+						$formattedHits [] = array (
+								"NAME" => html_entity_decode ( array_keys ( $hit )[0] ),
+								"PATH" => html_entity_decode ( $hit [array_keys ( $hit )[0]] ),
+								"DESC" => html_entity_decode ( $this->getDescription ( array_keys ( $hit )[0] ) ) 
+						);
+					}
+					return json_encode ( $formattedHits );
+				} else {
+					return json_encode ( array (
+							"ERROR" => "EMPTY" 
+					) );
 				}
-				return json_encode ( $formattedHits );
 			} else {
 				return json_encode ( array (
-						"ERROR" => "EMPTY" 
+						"ERROR" => "WRONGSTART" 
 				) );
 			}
 		} else {
