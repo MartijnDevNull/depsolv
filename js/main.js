@@ -9,7 +9,7 @@ $(document)
 					function() {
 						var tableBody = $('.table-list-search tbody');
 						var tableRowsClass = $('.table-list-search tbody tr');
-						var url = "http://b.plebian/backend/api.php";
+						var url = "https://api.plebian/backend/api.php";
 						$
 							.ajax({
 								type : "POST",
