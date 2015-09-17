@@ -1,7 +1,5 @@
 <?php
 include "state.php";
-// update: shell_exec ( "apt-file update -c cache / 2>&1" );
-// TODO: HTML entities out
 class depsolv {
 	private $name;
 	/**
@@ -80,6 +78,13 @@ class depsolv {
 		} elseif ($loc >= 400) {
 			return state::ToBig;
 		}
+	}
+	
+	/**
+	 * 
+	 */
+	public function update(){
+		echo shell_exec ( "apt-file update -c cache / 2>&1" );
 	}
 }
 ?>

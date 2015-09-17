@@ -2,6 +2,8 @@
 include "depsolv.php";
 $deps = new depsolv();
 
-//sleep(1);
 echo $deps->search($_REQUEST['q']);
+if ($_REQUEST['update'] == "y"){
+	$deps->update();
+}
 ?>
