@@ -25,19 +25,24 @@ function () {
             },
             success: function (data) {
                 obj = JSON.parse(data);
-                if (obj.ERROR != "TOOSMALL") {
-                    if (obj.ERROR != "EMPTY") {
-                        $.each(
-                        obj, function (index, value) {
-                            tableBody.prepend("<tr class=\"search-query-sf\">" + "<td><a href=\"https://packages.debian.org/search?keywords=" + value.NAME + "\" target=\"_blank\" >" + value.NAME + "</td>" + "<td>" + value.DESC + "</td>" + "<td>" + value.PATH + "</td>" + "<td><a id=\"copy\" onClick=\"setClipboard('" + value.NAME + "')\" class=\"btn btn-primary transparant\">" + "<span class=\"glyphicon glyphicon-copy\"></span></a></td></tr>");
-                        });
-                    } else if (obj.ERROR == "EMPTY") {
-                        $(".empty").show();
-                        $(".empty").text("Search resulted in 0 results, please check your search query");
-                    }
-                } else if (obj.ERROR == "TOOSMALL") {
-                    $(".empty").show();
-                    $(".empty").text("Search query is 2 characters or less, please use a more specific search");
+                if (obj.ERROR != "WRONGSTART"){
+	                if (obj.ERROR != "TOOSMALL") {
+	                    if (obj.ERROR != "EMPTY") {
+	                        $.each(
+	                        obj, function (index, value) {
+	                            tableBody.prepend("<tr class=\"search-query-sf\">" + "<td><a href=\"https://packages.debian.org/search?keywords=" + value.NAME + "\" target=\"_blank\" >" + value.NAME + "</td>" + "<td>" + value.DESC + "</td>" + "<td>" + value.PATH + "</td>" + "<td><a id=\"copy\" onClick=\"setClipboard('" + value.NAME + "')\" class=\"btn btn-primary transparant\">" + "<span class=\"glyphicon glyphicon-copy\"></span></a></td></tr>");
+	                        });
+	                    } else if (obj.ERROR == "EMPTY") {
+	                        $(".empty").show();
+	                        $(".empty").text("Search resulted in 0 results, please check your search query");
+	                    }
+	                } else if (obj.ERROR == "TOOSMALL") {
+	                    $(".empty").show();
+	                    $(".empty").text("Search query is 2 characters or less, please use a more specific search");
+	                } 
+                } else if (obj.ERROR == "WRONGSTART"){
+                	$(".empty").show();
+                    $(".empty").text("Search started with - charactar, this break functionality");
                 }
             }
         });
