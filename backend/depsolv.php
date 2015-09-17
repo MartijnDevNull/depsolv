@@ -38,7 +38,7 @@ class depsolv {
 	 * @return string
 	 */
 	private function getDescription($name) {
-		$descp = shell_exec ( "apt-cache show " . $name . " | awk '/Description-en:/ {flag=1;next} /Description-md5/{flag=0} flag {print}' | sed 's/Description-en://g'| tr -d '\n'" );
+		$descp = shell_exec ( "apt-cache show " . escapeshellarg ( $name ) . " | awk '/Description-en:/ {flag=1;next} /Description-md5/{flag=0} flag {print}' | sed 's/Description-en://g'| tr -d '\n'" );
 		$descp = substr ( $descp, 0, 200 ) . " [..]";
 		return $descp;
 	}
@@ -50,7 +50,7 @@ class depsolv {
 	private function getFileSearch() {
 		$loc = shell_exec ( "apt-file search " . $this->name . " -c cache | wc -l" );
 		if ($loc != 0 || $loc <= 50) {
-			$res = shell_exec ( "apt-file search " . $this->name . " -c cache" );
+			$res = shell_exec ( "apt-file search " . escapeshellarg ( $this->name ) . " -c cache" );
 			$res = str_replace ( ":", "", $res );
 			$res = preg_replace ( '/\s+/', ' ', trim ( $res ) );
 			$res = explode ( " ", $res );

@@ -1,7 +1,6 @@
 $(document).ready(
 
 function () {
-    // this is the id of the form
     var activeSystemClass = $('.list-group-item.active');
 
     $("#formSub").submit(
