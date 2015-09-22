@@ -63,7 +63,6 @@ class depsolv {
 		$res = shell_exec ( "apt-file search " . $this->name . " -c cache" );
 		$loc = substr_count ( $res, "\n" );
 		if ($loc <= 500) {
-			$res = shell_exec ( "apt-file search " . escapeshellarg ( $this->name ) . " -c cache" );
 			$res = str_replace ( ":", "", $res );
 			$res = preg_replace ( '/\s+/', ' ', trim ( $res ) );
 			$res = explode ( " ", $res );
