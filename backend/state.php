@@ -1,8 +1,7 @@
 <?php
-abstract class state
-{
-	const Good = 0;
-	const Emtpy = 1;
-	const ToBig = 3;
+abstract class state {
+	const Good = - 1;
+	const Emtpy = - 2;
+	const TooBig = - 3;
 }
 ?>

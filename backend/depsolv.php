@@ -8,22 +8,28 @@ class depsolv {
 	 */
 	public function search($name) {
 		if (strlen ( $name ) >= 3) {
-			if (substr ( $name, 0 , 1) != "-") {
+			if (substr ( $name, 0, 1 ) != "-") {
 				$this->name = $name;
 				$repoFiles = $this->getFileSearch ();
-				if (count ( $repoFiles ) >= 2) {
-					$formattedHits = array ();
-					foreach ( $repoFiles as $hit ) {
-						$formattedHits [] = array (
-								"NAME" => html_entity_decode ( array_keys ( $hit )[0] ),
-								"PATH" => html_entity_decode ( $hit [array_keys ( $hit )[0]] ),
-								"DESC" => html_entity_decode ( $this->getDescription ( array_keys ( $hit )[0] ) ) 
-						);
+				if ($repoFiles != State::TooBig) {
+					if (count ( $repoFiles ) >= 2) {
+						$formattedHits = array ();
+						foreach ( $repoFiles as $hit ) {
+							$formattedHits [] = array (
+									"NAME" => html_entity_decode ( array_keys ( $hit )[0] ),
+									"PATH" => html_entity_decode ( $hit [array_keys ( $hit )[0]] ),
+									"DESC" => html_entity_decode ( $this->getDescription ( array_keys ( $hit )[0] ) ) 
+							);
+						}
+						return json_encode ( $formattedHits );
+					} else {
+						return json_encode ( array (
+								"ERROR" => "EMPTY" 
+						) );
 					}
-					return json_encode ( $formattedHits );
-				} else {
+				} elseif ($repoFiles == State::TooBig) {
 					return json_encode ( array (
-							"ERROR" => "EMPTY" 
+							"ERROR" => "TOOBIG" 
 					) );
 				}
 			} else {
@@ -54,8 +60,9 @@ class depsolv {
 	 * @return multitype:unknown
 	 */
 	private function getFileSearch() {
-		$loc = shell_exec ( "apt-file search " . $this->name . " -c cache | wc -l" );
-		if ($loc != 0 || $loc <= 50) {
+		$res = shell_exec ( "apt-file search " . $this->name . " -c cache" );
+		$loc = substr_count ( $res, "\n" );
+		if ($loc <= 500) {
 			$res = shell_exec ( "apt-file search " . escapeshellarg ( $this->name ) . " -c cache" );
 			$res = str_replace ( ":", "", $res );
 			$res = preg_replace ( '/\s+/', ' ', trim ( $res ) );
@@ -79,10 +86,8 @@ class depsolv {
 			}
 			
 			return $searchArray;
-		} elseif ($loc == 0) {
-			return state::Emtpy;
-		} elseif ($loc >= 400) {
-			return state::ToBig;
+		} elseif ($loc >= 500) {
+			return state::TooBig;
 		}
 	}
 	
@@ -90,10 +95,10 @@ class depsolv {
 	 * Werkt niet
 	 */
 	public function update($q) {
-		if ($q == "cache"){
+		if ($q == "cache") {
 			echo shell_exec ( "apt-file update -c cache / 2>&1" );
 		}
-		if ($q == "git"){
+		if ($q == "git") {
 			echo shell_exec ( "git pull / 2>&1" );
 		}
 	}
