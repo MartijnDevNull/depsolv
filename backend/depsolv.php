@@ -60,7 +60,7 @@ class depsolv {
 	 * @return multitype:unknown
 	 */
 	private function getFileSearch() {
-		$res = shell_exec ( "apt-file search " . $this->name . " -c cache" );
+		$res = shell_exec ( "apt-file search " . escapeshellcmd ( $this->name ) . " -c cache" );
 		$loc = substr_count ( $res, "\n" );
 		if ($loc <= 500) {
 			$res = str_replace ( ":", "", $res );
